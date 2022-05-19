@@ -1,0 +1,106 @@
+/* ========================================================
+config - サイト共通設定
+======================================================== */
+/*  共通カラー変数
+/* -------------------------------------------------------- */
+/* サイト別 */
+$color01: #f4f4f4; // key1 
+$color02: #26b094; // key2 
+$color03: #dddddd; // key3 
+$color04: #d9d9d9; // key4 
+$color05: #010101; // key5 
+$color06: #ffeb7c; // key6 
+$color07: #fff6e6; // key7 
+$color08: #b5ccc8; // key8 
+$color09: #5e5e5e; // key9 
+$color10: #d5f0eb; // key10 
+$color11: #4a4a4a; // key11 
+$color12: #e8f6f4; // key12 
+$color13: #e5e5e5; // key13 
+$color14: #e4f3f9; // key14 
+$color15: #ff9e21; // key15 
+$color16: #ffa024; // key16 
+$color17: #88d69f; // key17 
+$color18: #369c54; // key18 
+$color19: #005B98; // key19
+
+/* モノトーン */
+$black: #000;
+$white: #fff;
+
+//画像相対パス #{$imgPath}
+$imgPath: "../img/"; //AMP用 img要素書き換え #{$img}
+$img: "img";
+
+@font-face {
+  font-family: 'Source Han Sans';
+  font-style: normal;
+	font-weight: 400;
+  font-display: swap;
+	src: url('../font/SourceHanSans-Medium.otf') format('opentype'),
+}
+
+@font-face {
+  font-family: 'Source Han Sans';
+  font-style: normal;
+	font-weight: 600;
+  font-display: swap;
+	src: url('../font/SourceHanSans-Bold.otf') format('opentype'),
+}
+
+@font-face {
+  font-family: 'Source Han Sans';
+  font-style: normal;
+	font-weight: 800;
+  font-display: swap;
+	src: url('../font/SourceHanSans-Heavy.otf') format('opentype'),
+}
+
+@font-face {
+  font-family: 'ShinGoPro';
+  font-style: normal;
+  font-display: swap;
+	src: url('../font/ShinGoProDeBold.otf') format('opentype'),
+}
+
+@mixin font1(){
+	font-family: 'Source Han Sans';
+}
+
+@mixin font2(){
+	font-family: 'ShinGoPro';
+}
+
+// 両端揃えの設定 @include justify();
+@mixin justify() {
+	text-align: justify;
+	text-justify: inter-ideograph;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+@mixin flex($wrap: nowrap, $justify: null, $item: null) {
+	display: flex;
+	@if $wrap != null {
+		flex-wrap: $wrap;
+	}
+	@if $justify != null {
+		justify-content: $justify;
+	}
+	@if $item != null {
+		align-items: $item;
+	}
+	box-sizing: border-box;
+}
+
+// breakepoint
+$breakpoints: (
+	"sp": "screen and (max-width: 767px)",
+	"md": "screen and (min-width: 768px)",
+)!default;
+// @mixinの定義
+@mixin mq($breakpoint: md) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
